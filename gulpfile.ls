@@ -1,11 +1,14 @@
 require! {
   gulp
-  'gulp-util'
-  'gulp-stylus'
-  'gulp-livescript'
-  'gulp-livereload'
-  'tiny-lr'
-  'gulp-bower-files'
+  \gulp-util
+  \gulp-stylus
+  \gulp-livescript
+  \gulp-livereload
+  \tiny-lr
+  \gulp-bower-files
+  \gulp-usemin
+  \gulp-uglify
+  \gulp-minify-css
   express
   path 
 }
@@ -14,6 +17,8 @@ app         = express!
 server      = tiny-lr!
 EXPRESSPORT = 3001
 LIVERELOADPORT = 35729
+
+#dev
 
 gulp.task \bower,->
   gulp-bower-files!
@@ -30,20 +35,6 @@ gulp.task \app, ->
     .pipe gulp-livescript!
     .pipe gulp.dest \app/js
 
-gulp.task \youmeb, ->
-  gulp.src \app.ls
-    .pipe gulp-livescript!
-    .pipe gulp.dest \.
-  gulp.src \api/controllers/*.ls
-    .pipe gulp-livescript!
-    .pipe gulp.dest \controllers
-  gulp.src \api/models/*.ls
-    .pipe gulp-livescript!
-    .pipe gulp.dest \models
-  gulp.src \api/migrations/*.ls
-    .pipe gulp-livescript!
-    .pipe gulp.dest \migrations
-
 gulp.task \express, ->
   app.use require('connect-livereload')!
   app.use  express.static path.resolve \.
@@ -58,5 +49,30 @@ gulp.task \watch, ->
     gulp.watch \app/stylus/*.styl, <[stylus]>
     gulp.watch \app/src/*.ls, <[app]>
 
-gulp.task \default, <[bower stylus app watch express youmeb]>
+#youmebjs framework 
 
+gulp.task \youmeb, ->
+  gulp.src \app.ls
+    .pipe gulp-livescript!
+    .pipe gulp.dest \.
+  gulp.src \api/controllers/*.ls
+    .pipe gulp-livescript!
+    .pipe gulp.dest \controllers
+  gulp.src \api/models/*.ls
+    .pipe gulp-livescript!
+    .pipe gulp.dest \models
+  gulp.src \api/migrations/*.ls
+    .pipe gulp-livescript!
+    .pipe gulp.dest \migrations
+
+#pulish 
+
+gulp.task \usemin,->
+  gulp.src \app/*.html
+    .pipe gulp-usemin(
+      cssmin: gulp-minify-css!
+      jsmin: gulp-uglify!)
+    .pipe(gulp.dest \build/)
+
+gulp.task \default, <[bower stylus app watch express youmeb]>
+gulp.task \publish, <[usemin]>
