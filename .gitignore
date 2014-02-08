@@ -1,5 +1,6 @@
 routes
 /controllers
+bower_components
 /models
 /migrations
 .DS_store
