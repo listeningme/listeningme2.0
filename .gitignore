@@ -13,3 +13,4 @@ default.json
 /app/styles
 /app/lib
 /build
+npm-debug.log
