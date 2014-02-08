@@ -5,6 +5,7 @@ require! {
   'gulp-livescript'
   'gulp-livereload'
   'tiny-lr'
+  'gulp-bower-files'
   express
   path 
 }
@@ -13,6 +14,10 @@ app         = express!
 server      = tiny-lr!
 EXPRESSPORT = 3001
 LIVERELOADPORT = 35729
+
+gulp.task \bower,->
+  gulp-bower-files!
+    .pipe gulp.dest \app/lib
 
 gulp.task \stylus, ->
   gulp.src \app/stylus/*.styl
@@ -53,5 +58,5 @@ gulp.task \watch, ->
     gulp.watch \app/stylus/*.styl, <[stylus]>
     gulp.watch \app/src/*.ls, <[app]>
 
-gulp.task \default, <[stylus app watch express youmeb]>
+gulp.task \default, <[bower stylus app watch express youmeb]>
 

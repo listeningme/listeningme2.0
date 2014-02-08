@@ -1,0 +1,33 @@
+{
+  "name": "listeningme",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "~1.2.2",
+    "angular-resource": "~1.0.7",
+    "angular-cookies": "~1.0.7",
+    "angular-sanitize": "~1.0.7",
+    "angular-ui-router": "~0.2.8",
+    "ngstorage": "~0.3.0"
+  },
+  "overrides": {
+    "angular": {
+      "main": "angular.min.js"
+    },
+    "angular-resource": {
+      "main": "angular-resource.min.js"
+    },
+    "angular-cookies": {
+      "main": "angular-cookies.min.js"
+    },
+    "angular-sanitize": {
+      "main": "angular-sanitize.min.js"
+    },
+    "ngstorage": {
+      "main": "jquery.min.js"
+    }
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.0.7",
+    "angular-scenario": "~1.0.7"
+  }
+}
