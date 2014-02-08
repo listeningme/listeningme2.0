@@ -6,8 +6,8 @@
     "angular-resource": "~1.0.7",
     "angular-cookies": "~1.0.7",
     "angular-sanitize": "~1.0.7",
-    "angular-ui-router": "~0.2.8",
-    "ngstorage": "~0.3.0"
+    "ngstorage": "~0.3.0",
+    "angular-ui-router": "0.2.8-bowratic-tedium"
   },
   "overrides": {
     "angular": {
@@ -24,6 +24,9 @@
     },
     "ngstorage": {
       "main": "jquery.min.js"
+    },
+    "angular-ui-router":{
+      "main": "angular-ui-router.min.js"
     }
   },
   "devDependencies": {
