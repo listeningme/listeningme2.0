@@ -6,3 +6,4 @@ routes
 log
 node_modules
 default.json
+/app.js
